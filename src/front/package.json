@@ -1,0 +1,58 @@
+{
+  "name": "front",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.3.6",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "apollo-link-http": "^1.5.17",
+    "axios": "^0.21.0",
+    "axios-hooks": "^2.2.0",
+    "graphql": "^15.4.0",
+    "jwt-decode": "^3.1.2",
+    "rc-progress": "^3.1.2",
+    "react": "^17.0.1",
+    "react-audio-player": "^0.14.0",
+    "react-countdown": "^2.3.1",
+    "react-dom": "^17.0.1",
+    "react-hook-form": "^6.13.0",
+    "react-player": "^2.7.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.1",
+    "serve": "^11.3.2",
+    "subscriptions-transport-ws": "^0.9.18",
+    "uuid": "^8.3.2",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "docker:build" : "docker build -f release/Dockerfile -t snwfdhmp1/blindtest-front:latest --build-arg REACT_APP_SERVER_ADDR=home.snwfdhmp.com:4005 .",
+    "docker:restart": "docker kill blindtest-front && docker run --rm --name blindtest-front -p 5000:5000 -d snwfdhmp1/blindtest-front:latest"
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

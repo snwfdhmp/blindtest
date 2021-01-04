@@ -1,0 +1,137 @@
+.lobby {
+  &__section {
+    // background-color: #121212;
+  }
+}
+
+.game-manager {
+  &__section {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__progress-circle {
+    // position: absolute;
+    display: inline;
+    width: 2rem;
+  }
+  &__progress-text {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  &__input {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: none;
+    z-index: -1;
+    width: 12rem;
+    text-align: center;
+  }
+}
+
+.search-result {
+  &__list {
+    list-style: none;
+    padding: 0;
+    width: 16rem;
+    margin-left: 0.5rem;
+  }
+  &__item {
+    list-style: none;
+    border-radius: 4px;
+    padding: 0.2rem 0rem;
+
+    &:hover {
+      background-color: #282828;
+      cursor: pointer;
+    }
+  }
+}
+
+.game-notification {
+  &__content--username {
+    font-size: 1.5rem !important;
+    vertical-align: bottom;
+  }
+
+  &__content--fullheight {
+    font-size: 1.5rem !important;
+    vertical-align: center;
+    line-height: 4rem;
+  }
+
+  &__item {
+    display: inline-block;
+
+    background-color: #474747;
+    color: white;
+    width: 12rem;
+    min-height: 4rem;
+    // max-height: 8rem;
+    // line-break: auto;
+    word-wrap: break-word;
+    word-break: break-word;
+    line-height: 2rem;
+    vertical-align: center;
+    text-align: center;
+    border-radius: 24px;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__display {
+    position: fixed;
+    top: 2rem;
+    right: 0;
+    width: 18rem;
+    height: 56rem;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  &__item--success {
+    background-color: #47a547;
+  }
+
+  &__item--error {
+    background-color: #d54747;
+  }
+
+  &__item--default {
+    background-color: #474747;
+  }
+}
+
+.game-manager__finished-section {
+  text-align: center;
+  & > h3 {
+    font-size: 8rem;
+    margin-bottom: 0;
+  }
+
+  & > p {
+    font-size: 2.5rem;
+  }
+}
+
+.game-manager__start-button {
+  padding: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.game-manager__start-section {
+  & > h3 {
+    font-size: 8rem;
+    margin-bottom: 0;
+  }
+
+  & > p {
+    font-size: 2.5rem;
+  }
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 5rem;
+}

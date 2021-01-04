@@ -1,0 +1,138 @@
+type Query {
+  authenticate: AuthResponse
+  myPlaylists(limit: Int, offset: Int): [Playlist]
+  searchPlaylists(query: String): [Playlist]
+  getTracks(playlistId: ID): [Track]
+  topTracks(count: Int, timeRange: String): [Track]
+  getPreviewUrl(trackId: ID): Track
+  user: User
+
+  ##
+  # Lobby related
+  ##
+
+  lobby(joinCode: String!): Lobby
+  game(joinCode: String!): Game
+}
+
+type Mutation {
+  createLobby(userUuidList: [String]): CreateLobbyResponse
+  joinLobby(joinCode: String!): LobbyUser
+  playlistToLobbyTracks(playlistUuid: ID, lobbyUuid: ID): [Track]
+  friendsMatchToLobbyTracks(lobbyUuid: ID): [Track]
+
+  createGame(userUuidList: [ID], trackList: [TrackInput], lobbyUuid: ID): Game
+  createGameFromSettings(
+    userUuidList: [ID]
+    gameSettingsUuid: ID
+    lobbyUuid: ID
+  ): Game
+  startGame(gameUuid: ID): Int
+  joinGame(joinCode: String!): GameUser
+  proposeAnswer(gameUuid: ID, trackIndex: Int, answerText: String): Boolean
+}
+
+type Subscription {
+  lobbyEvent(lobbyUuid: ID): Event
+  gameEvent(gameUuid: ID): Event
+}
+
+type CreateLobbyResponse {
+  joinCode: String
+}
+
+type Lobby {
+  uuid: ID
+  joinCode: String
+  createdAt: String
+  users: [LobbyUser]
+  games: [Game]
+  nextGameSettings: GameSettings
+}
+
+type LobbyUser {
+  uuid: ID
+  name: String
+  createdAt: String
+}
+
+type GameUser {
+  uuid: ID
+  name: String
+  createdAt: String
+  score: Int
+}
+
+type User {
+  uuid: ID
+  name: String
+}
+
+type Game {
+  uuid: ID
+  joinCode: String
+  createdAt: String
+  startAt: String
+  endAt: String
+  nextTrackAt: String
+  currentTrackIndex: Int
+  tracks: [Track]
+  users: [GameUser]
+  lobby: Lobby
+}
+
+type GameSettings {
+  uuid: ID
+  tracksToGuess: Int!
+  trackList: [Track]
+}
+
+type Playlist {
+  uuid: ID
+  name: String
+  pictureUrl: String
+}
+
+input TrackInput {
+  name: String
+  previewUrl: String
+  artists: [ArtistInput]
+}
+
+type Track {
+  uuid: ID
+  name: String
+  previewUrl: String
+  artists: [Artist]
+}
+
+input ArtistInput {
+  name: String
+  url: String
+}
+
+type Artist {
+  uuid: ID
+  name: String
+  url: String
+}
+
+type Event {
+  uuid: ID
+  kind: String
+  answerAcceptedForUser: ID
+  answeredBy: String
+  answerText: String
+  userUuid: ID
+  userName: String
+}
+
+type AuthResponse {
+  identity: String
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}

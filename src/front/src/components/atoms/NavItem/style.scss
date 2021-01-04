@@ -1,0 +1,38 @@
+@import "../../../assets/scss/variables.scss";
+
+.nav-item {
+  margin: 0.2rem;
+  margin-left: 0;
+  padding: 0.2rem 0rem;
+  color: $color-lighter;
+  line-break: strict;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &__title {
+    // src: "Nunito/Nunito-Black.ttf";
+    src: "Circular-Spotify.ttf";
+    font-size: 14px;
+
+    // font-weight: 500;
+    &:hover {
+      color: $color-white;
+      cursor: default;
+    }
+  }
+
+  &__section-title {
+    display: block;
+    margin-top: 1rem;
+    padding-bottom: 0.2rem;
+    font-size: 12px;
+    text-transform: uppercase;
+    // src: "Nunito/Nunito-Black.ttf";
+    src: "Circular-Spotify.ttf";
+  }
+}
+
+.nav-section {
+  margin-bottom: 2rem;
+}

@@ -1,0 +1,82 @@
+@import "../../../assets/scss/variables.scss";
+
+$media-width: (2 * 2 * 1) rem;
+$media-height: (2 * 2 * 1) rem;
+$reveal-delay: 0.1s;
+
+.result-item {
+  display: inline-block;
+  border: 1px solid $color-light;
+  box-sizing: content-box;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+
+  &:hover {
+    .result-item__media {
+      -webkit-animation: $reveal-delay linear forwards reveal;
+      -moz-animation: $reveal-delay linear forwards reveal;
+      -o-animation: $reveal-delay linear forwards reveal;
+      animation: $reveal-delay linear forwards reveal;
+    }
+    cursor: pointer;
+  }
+
+  &__media {
+    width: $media-width;
+    height: $media-height;
+    display: block;
+    filter: blur(5px) grayscale(90%);
+    overflow: hidden;
+
+    img {
+      width: $media-width;
+      height: $media-height;
+      object-fit: cover;
+    }
+  }
+
+  &__title {
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    text-transform: capitalize;
+    padding-top: 0.2rem;
+    padding-bottom: 0.5rem;
+    box-sizing: content-box;
+    font-size: 1.2rem;
+  }
+}
+
+@-webkit-keyframes reveal {
+  from {
+    filter: blur(5px);
+  }
+  to {
+    filter: blur(0px);
+  }
+}
+@-moz-keyframes reveal {
+  from {
+    filter: blur(5px);
+  }
+  to {
+    filter: blur(0px);
+  }
+}
+@-o-keyframes reveal {
+  from {
+    filter: blur(5px);
+  }
+  to {
+    filter: blur(0px);
+  }
+}
+@keyframes reveal {
+  from {
+    filter: blur(5px);
+  }
+  to {
+    filter: blur(0px);
+  }
+}

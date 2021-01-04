@@ -1,0 +1,30 @@
+{
+  "type": "module",
+  "name": "back",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "db:sync": "NODE_DB_FORCE_SYNC=true node src/bin/main.js",
+    "dev": "nodemon src/bin/main.js -e graphql,js",
+    "docker:build" : "docker build -f release/Dockerfile -t snwfdhmp1/blindtest-back:latest .",
+    "docker:restart": "docker kill blindtest-back && docker run --rm --link postgres-blindtest:db --name blindtest-back -p 4005:4005 -e PORT=4005 -e 'DATABASE_URL=postgres://blindtest:AZEIhueg1297@db:5432/blindtest?sslmode=disable' -d snwfdhmp1/blindtest-back:latest"
+  },
+  "dependencies": {
+    "@sentry/node": "^5.29.0",
+    "apollo-server": "^2.19.0",
+    "axios": "^0.21.1",
+    "axios-retry-after": "^1.0.1",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.5.1",
+    "qs": "^6.9.4",
+    "querystring": "^0.2.0",
+    "sequelize": "^6.3.5",
+    "spotify-web-api-node": "^5.0.0"
+  }
+}

@@ -1,0 +1,15 @@
+.signup {
+  &__section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+  }
+  &__content {
+    margin-top: 8rem;
+    width: 18rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
