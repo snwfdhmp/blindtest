@@ -3,7 +3,7 @@ services:
   front:
     build:
       dockerfile: ../../src/front/release/Dockerfile
-      context: src/front
+      context: ../../src/front
       args:
         - REACT_APP_SERVER_ADDR=home.snwfdhmp.com:4005
     ports:
