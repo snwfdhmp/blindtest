@@ -13,7 +13,7 @@ services:
       dockerfile: release/Dockerfile
       context: ../../src/back
     ports:
-      - "5000:5000"
+      - "4005:4000"
     environment:
       DATABASE_URL: postgres://blindtest:AZEIhueg1297@postgres:5432/blindtest?sslmode=disable
     depends_on:
