@@ -84,9 +84,26 @@ export class Server {
     });
     this.sequelizeModelsDefaultParams.sequelize = this.sequelize;
 
-    await this.sequelize.authenticate().catch((err) => {
-      log.error({ event: "db.connection.failed", error: err });
-    });
+    while (true) {
+      try {
+        await this.sequelize.authenticate();
+        break;
+      } catch (e) {
+        log.error({
+          event: "db.connection.failed",
+          msg: "Retrying db connection",
+          e,
+        });
+        const wait = () => {
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, 1000);
+          });
+        };
+        await wait();
+      }
+    }
 
     eventsToWaitFor.push(...["db.sync.done", "graphql.init.done"]);
     // if (!config.disableSeeding) eventsToWaitFor.push("db.seed.done");
