@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  front:
+    build:
+      dockerfile: src/front/release/Dockerfile
+      context: src/front
+      args:
+        - REACT_APP_SERVER_ADDR=home.snwfdhmp.com:4005
+    ports:
+      - "5000:5000"
+  back:
+    build:
+      dockerfile: src/back/release/Dockerfile
+      context: src/back
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgres://blindtest:AZEIhueg1297@postgres:5432/blindtest?sslmode=disable
+    depends_on:
+      - postgres
+    links:
+      - postgres
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: blindtest
+      POSTGRES_USER: blindtest
+      POSTGRES_PASSWORD: AZEIhueg1297
+volumes:
+  logvolume01: {}
