@@ -2,7 +2,7 @@ version: "3.9"
 services:
   front:
     build:
-      dockerfile: ../../src/front/release/Dockerfile
+      dockerfile: release/Dockerfile
       context: ../../src/front
       args:
         - REACT_APP_SERVER_ADDR=home.snwfdhmp.com:4005
@@ -10,7 +10,7 @@ services:
       - "5000:5000"
   back:
     build:
-      dockerfile: ../../src/back/release/Dockerfile
+      dockerfile: release/Dockerfile
       context: ../../src/back
     ports:
       - "5000:5000"
