@@ -26,5 +26,3 @@ services:
       POSTGRES_DB: blindtest
       POSTGRES_USER: blindtest
       POSTGRES_PASSWORD: AZEIhueg1297
-volumes:
-  logvolume01: {}
