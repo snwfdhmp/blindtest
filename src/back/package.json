@@ -7,7 +7,7 @@
   "scripts": {
     "db:sync": "NODE_DB_FORCE_SYNC=true node src/bin/main.js",
     "dev": "nodemon src/bin/main.js -e graphql,js",
-    "docker:build" : "docker build -f release/Dockerfile -t snwfdhmp1/blindtest-back:latest .",
+    "docker:build": "docker build -f release/Dockerfile -t snwfdhmp1/blindtest-back:latest .",
     "docker:restart": "docker kill blindtest-back && docker run --rm --link postgres-blindtest:db --name blindtest-back -p 4005:4005 -e PORT=4005 -e 'DATABASE_URL=postgres://blindtest:AZEIhueg1297@db:5432/blindtest?sslmode=disable' -d snwfdhmp1/blindtest-back:latest"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.4.0",
     "jsonwebtoken": "^8.5.1",
+    "object-sizeof": "^1.6.1",
     "pg": "^8.5.1",
     "qs": "^6.9.4",
     "querystring": "^0.2.0",
