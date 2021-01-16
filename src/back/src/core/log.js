@@ -29,7 +29,7 @@ export class Logger {
         }
         data.logTime = new Date().toISOString();
         data.level = level;
-        data = JSON.stringify(data, null, 0);
+        // data = JSON.stringify(data, null, 0);
         console.log(data);
         break;
       default:
