@@ -211,7 +211,7 @@ export function ConnectSpotifyCallback({ location }) {
     <div>
       <Spinner fullScreen text={"Synchronizing Spotify account"} />
       <p>
-        Stuck ? <Link to={"/connect/spotify"}>Click here to retry</Link>
+        {/* Stuck ? <Link to={"/connect/spotify"}>Click here to retry</Link> */}
       </p>
     </div>
   );
