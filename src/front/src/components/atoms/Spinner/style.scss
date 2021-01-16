@@ -1,0 +1,40 @@
+@keyframes example {
+  0% {
+    color: #979797;
+  }
+  25% {
+    color: #676767;
+  }
+  50% {
+    color: #979797;
+  }
+  75% {
+    color: #c7c7c7;
+  }
+}
+
+.spinner {
+  &__display {
+    &--fullscreen {
+      width: 100%;
+      position: absolute;
+      top: 5rem;
+      left: 0;
+      text-align: center;
+      height: 100%;
+    }
+
+    & > span {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      line-height: 2rem;
+      vertical-align: top;
+      color: #676767;
+      animation-name: example;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-direction: normal;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { useParams, Redirect, Link } from "react-router-dom";
 import useNotificationContext from "../../contexts/NotificationContext/NotificationContext";
 import useUserContext from "../../UserContext";
 import { LinkWithCopy } from "../../atoms/LinkWithCopy";
+import { Spinner } from "../../atoms/Spinner";
 
 import "./style.scss";
 
@@ -37,18 +38,6 @@ export default function Component({ defaultJoinCode }) {
     </div>
   );
 }
-
-const Spinner = () => {
-  return (
-    <div className="spinner__display">
-      <img
-        src={"https://www.freeiconspng.com/uploads/spinner-icon-0.gif"}
-        alt=""
-        style={{ width: "2rem" }}
-      />
-    </div>
-  );
-};
 
 const LobbyController = ({ joinCode }) => {
   const { data, loading, error, refetch } = useQuery(
@@ -447,7 +436,7 @@ const CreateLobbyButton = () => {
         setData(<CreateLobby />);
       }}
     >
-      New lobby
+      Create a new lobby
     </button>
   );
 
@@ -459,11 +448,13 @@ const CreateLobbyButton = () => {
   );
 };
 
-const CreateLobby = ({ requestUid, shouldRedirect = true }) => {
-  const [rendered, setRendered] = useState(<p>Loading...</p>);
+export const CreateLobby = ({ shouldRedirect = true }) => {
+  const [rendered, setRendered] = useState(
+    <Spinner style={{ width: "1rem" }} />
+  );
   const apolloClient = useApolloClient();
   const [user, userDispatch] = useUserContext();
-  console.log({ userUuid: user.data.userUuid });
+
   useEffect(() => {
     apolloClient
       .mutate({

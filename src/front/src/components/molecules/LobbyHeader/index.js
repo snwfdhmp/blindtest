@@ -3,12 +3,14 @@ import useUserContext from "../../UserContext";
 import { gql, useApolloClient } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { LinkWithCopy } from "../../atoms/LinkWithCopy";
+import { CreateLobby } from "../LobbyManager";
 
 export default function LobbyHeader() {
   const lobbyJoinCode = localStorage.getItem("currentLobbyJoinCode");
   const [lobbyData, setLobbyData] = useState(null);
   const apolloClient = useApolloClient();
   const [user, _] = useUserContext();
+  const [buttonContent, setButtonContent] = useState("Create lobby");
 
   useEffect(() => {
     if (!user || !user.data || !user.data.userUuid) return;
@@ -50,9 +52,13 @@ export default function LobbyHeader() {
     !lobbyData
   )
     return (
-      <Link to="/lobby" style={{ color: "white" }}>
-        Lobby
-      </Link>
+      <button
+        onClick={() => {
+          setButtonContent(<CreateLobby />);
+        }}
+      >
+        {buttonContent}
+      </button>
     );
 
   return (

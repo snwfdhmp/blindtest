@@ -44,6 +44,7 @@ import qs from "qs";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import "./style.scss";
 import Axios from "axios";
+import { Spinner } from "./components/atoms/Spinner";
 
 let serverAddr = process.env.REACT_APP_SERVER_ADDR || "localhost:4000";
 
@@ -183,7 +184,9 @@ export function Signout({
 export default App;
 
 export function ConnectSpotify({ location }) {
-  const [rendered, setRendered] = useState(<p>Waiting...</p>);
+  const [rendered, setRendered] = useState(
+    <Spinner fullScreen text={"Connecting to spotify"} />
+  );
 
   useEffect(() => {
     const requestUrl = apiBaseUrl + "/spotify-login";
@@ -205,10 +208,12 @@ export function ConnectSpotify({ location }) {
 export function ConnectSpotifyCallback({ location }) {
   const [user, userDispatch] = useUserContext();
   const [rendered, setRendered] = useState(
-    <p>
-      Waiting... <Link to={location.pathname + location.search}>retry</Link>{" "}
-      <Link to={"/connect/spotify"}>to start</Link>
-    </p>
+    <div>
+      <Spinner fullScreen text={"Synchronizing Spotify account"} />
+      <p>
+        Stuck ? <Link to={"/connect/spotify"}>Click here to retry</Link>
+      </p>
+    </div>
   );
   const params = qs.parse(location.search.slice(1));
   const [didAuth, setDidAuth] = useState(false);
@@ -243,13 +248,6 @@ export function ConnectSpotifyCallback({ location }) {
         );
         return;
       }
-      setRendered(
-        <p>
-          <Link to={location.pathname + location.search}>retry</Link>{" "}
-          <Link to={"/connect/spotify"}>to start</Link>
-          {JSON.stringify(data.data)}
-        </p>
-      );
 
       const refreshToken = data.data.refreshToken;
       const accessToken = data.data.accessToken;
